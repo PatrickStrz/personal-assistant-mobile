@@ -21,7 +21,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>yoooooooo</Text>
+        <Text>yooooooo@2o</Text>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}

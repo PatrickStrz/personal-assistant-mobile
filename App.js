@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 
 import { ApolloProvider } from "react-apollo"
 import ApolloClient from "apollo-boost"
@@ -30,8 +30,10 @@ export default class App extends React.Component {
     } else {
       return (
         <ApolloProvider client={client} style={styles.container}>
-          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-          <RootNavigation />
+          <Fragment>
+            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+            <RootNavigation />
+          </Fragment>
         </ApolloProvider>
       )
     }

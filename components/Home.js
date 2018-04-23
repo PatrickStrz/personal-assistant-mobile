@@ -3,8 +3,10 @@ import { Text } from "react-native"
 import { Query } from "react-apollo"
 import gql from "graphql-tag"
 import styled from "styled-components"
-import { USER_ID } from "../App"
-import CreateEntry from "./CreateEntry"
+// import { USER_ID } from "../App"
+// import CreateEntry from "./CreateEntry"
+
+const USER_ID = "cjg9o3ext00330718reim6pc8"
 
 const HOME_QUERY = gql`
   query entriesForUser($id: ID!) {
