@@ -25,11 +25,11 @@ const TextContainer = styled.View`
   height: 70px;
   align-items: center;
   /* justify-content: center; */
-  background-color: greenyellow;
+  background-color: white;
 `
 
 const TextItem = styled.Text`
-  color: blue;
+  color: teal;
 `
 
 const Scroll = styled.ScrollView`
