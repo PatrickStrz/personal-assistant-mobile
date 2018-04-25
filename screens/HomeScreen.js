@@ -65,8 +65,8 @@ export default class HomeScreen extends React.Component {
           </View> */}
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          {/* <Text style={styles.tabBarInfoText}>
+        {/* <View style={styles.tabBarInfoContainer}> */}
+        {/* <Text style={styles.tabBarInfoText}>
             This is a tab bar. You can edit it in:
           </Text>
 
@@ -77,8 +77,8 @@ export default class HomeScreen extends React.Component {
               navigation/MainTabNavigator.js
             </MonoText>
           </View> */}
-          <CreateEntry />
-        </View>
+        <CreateEntry />
+        {/* </View> */}
       </View>
     )
   }
