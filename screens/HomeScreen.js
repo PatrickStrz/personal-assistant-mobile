@@ -12,6 +12,7 @@ import { WebBrowser } from "expo"
 
 import { MonoText } from "../components/StyledText"
 import Home from "../components/Home"
+import CreateEntry from "../components/CreateEntry"
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -65,7 +66,7 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
+          {/* <Text style={styles.tabBarInfoText}>
             This is a tab bar. You can edit it in:
           </Text>
 
@@ -75,7 +76,8 @@ export default class HomeScreen extends React.Component {
             <MonoText style={styles.codeHighlightText}>
               navigation/MainTabNavigator.js
             </MonoText>
-          </View>
+          </View> */}
+          <CreateEntry />
         </View>
       </View>
     )

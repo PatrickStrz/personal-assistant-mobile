@@ -1,0 +1,6 @@
+export default {
+  LISTED: "LISTED",
+  IN_PROGRESS: "IN_PROGESS",
+  COMPLETED: "COMPLETED",
+  ARCHIVED: "ARCHIVED"
+}
