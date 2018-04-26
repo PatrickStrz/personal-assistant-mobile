@@ -5,6 +5,7 @@ import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
 import EntryStatus from "../constants/EntryStatus"
 import { USER_ID } from "../constants/UserInfo"
+import Card from "./Card"
 
 const Button = styled.Button``
 
@@ -56,7 +57,9 @@ class CreateEntry extends React.Component {
         {this.state.showInput ? (
           this.renderInput()
         ) : (
-          <Button title="Create Entry" onPress={this.showInput} />
+          <Card>
+            <Button title="Create Entry" onPress={this.showInput} />
+          </Card>
         )}
       </React.Fragment>
     )
