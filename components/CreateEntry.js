@@ -6,6 +6,9 @@ import { Mutation } from "react-apollo"
 import EntryStatus from "../constants/EntryStatus"
 import { USER_ID } from "../constants/UserInfo"
 import Card from "./Card"
+import { Overlay } from "react-native-elements"
+import { ALL_ENTRIES_QUERY } from "./EntriesList"
+import { ENTRY_BODY_FRAGMENT } from "../fragments"
 
 const Button = styled.Button``
 
@@ -14,9 +17,10 @@ const CREATE_ENTRY = gql`
     createEntry(
       data: { text: $text, status: $status, author: { connect: { id: $id } } }
     ) {
-      id
+      ...EntryBody
     }
   }
+  ${ENTRY_BODY_FRAGMENT}
 `
 
 class CreateEntry extends React.Component {
@@ -27,7 +31,20 @@ class CreateEntry extends React.Component {
 
   renderInput = () => {
     return (
-      <Mutation mutation={CREATE_ENTRY}>
+      <Mutation
+        mutation={CREATE_ENTRY}
+        update={(cache, { data: { createEntry } }) => {
+          const { entries } = cache.readQuery({
+            query: ALL_ENTRIES_QUERY,
+            variables: { id: USER_ID }
+          })
+          cache.writeQuery({
+            query: ALL_ENTRIES_QUERY,
+            variables: { id: USER_ID },
+            data: { entries: [createEntry, ...entries] }
+          })
+        }}
+      >
         {createEntry => (
           <View style={styles.inputContainer}>
             <TextInput
