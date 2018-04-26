@@ -28,23 +28,21 @@ class CreateEntry extends React.Component {
 
   showInput = () => this.setState({ showInput: true })
   hideInput = () => this.setState({ showInput: false })
+  updateCache = (cache, { data: { createEntry } }) => {
+    const { entries } = cache.readQuery({
+      query: ALL_ENTRIES_QUERY,
+      variables: { authorId: USER_ID }
+    })
+    cache.writeQuery({
+      query: ALL_ENTRIES_QUERY,
+      variables: { authorId: USER_ID },
+      data: { entries: [createEntry, ...entries] }
+    })
+  }
 
   renderInput = () => {
     return (
-      <Mutation
-        mutation={CREATE_ENTRY}
-        update={(cache, { data: { createEntry } }) => {
-          const { entries } = cache.readQuery({
-            query: ALL_ENTRIES_QUERY,
-            variables: { id: USER_ID }
-          })
-          cache.writeQuery({
-            query: ALL_ENTRIES_QUERY,
-            variables: { id: USER_ID },
-            data: { entries: [createEntry, ...entries] }
-          })
-        }}
-      >
+      <Mutation mutation={CREATE_ENTRY} update={this.updateCache}>
         {createEntry => (
           <View style={styles.inputContainer}>
             <TextInput

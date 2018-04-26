@@ -13,6 +13,7 @@ import { WebBrowser } from "expo"
 import { MonoText } from "../components/StyledText"
 import EntriesList from "../components/EntriesList"
 import CreateEntry from "../components/CreateEntry"
+import UpdateEntry from "../components/UpdateEntry"
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +32,7 @@ export default class HomeScreen extends React.Component {
           </View>
           <EntriesList />
         </ScrollView>
+        <UpdateEntry />
         <CreateEntry />
       </View>
     )

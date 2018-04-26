@@ -16,10 +16,10 @@ const TextItem = styled.Text`
   color: teal;
 `
 
-const EntryListItem = props => (
+const EntryListItem = ({ id, text }) => (
   <TextContainer>
-    <TextItem>{props.text}</TextItem>
-    <ArchiveEntry />
+    <TextItem>{text}</TextItem>
+    <ArchiveEntry id={id} />
   </TextContainer>
 )
 

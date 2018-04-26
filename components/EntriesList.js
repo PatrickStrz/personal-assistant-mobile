@@ -10,8 +10,8 @@ import EntryListItem from "./EntryListItem"
 const USER_ID = "cjg9o3ext00330718reim6pc8"
 
 export const ALL_ENTRIES_QUERY = gql`
-  query allEntries($id: ID!) {
-    entries(where: { author: { id: $id } }) {
+  query allEntries($authorId: ID!) {
+    entries(where: { author: { id: $authorId }, status: LISTED }) {
       ...EntryBody
     }
   }
@@ -24,14 +24,14 @@ const Scroll = styled.ScrollView`
 
 const renderData = data => {
   return data.entries.map(({ id, text }) => (
-    <EntryListItem key={id} text={text} />
+    <EntryListItem key={id} id={id} text={text} />
   ))
 }
 
 const EntriesList = () => (
   <Query
     query={ALL_ENTRIES_QUERY}
-    variables={{ id: USER_ID }}
+    variables={{ authorId: USER_ID }}
     style={{ flex: 1 }}
   >
     {({ loading, error, data }) => {
