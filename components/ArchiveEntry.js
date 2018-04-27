@@ -28,10 +28,8 @@ const ArchiveEntry = ({ id }) => (
     {(archiveEntry, { loading, error, data }) => {
       return (
         <Icon
-          raised
           name="archive"
           type="font-awesome"
-          color={colors.warningText}
           onPress={() => archiveEntry()}
           disabled={loading}
         />

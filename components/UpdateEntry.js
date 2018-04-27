@@ -45,12 +45,7 @@ export default class UpdateEntry extends Component {
 
     return (
       <Fragment>
-        <Icon
-          raised
-          name="edit"
-          type="font-awesome"
-          onPress={this.showEditInput}
-        />
+        <Icon name="edit" type="font-awesome" onPress={this.showEditInput} />
 
         <Overlay visible={this.state.updateInputVisible}>
           <Container>
@@ -64,16 +59,13 @@ export default class UpdateEntry extends Component {
             <ButtonContainer>
               <Mutation mutation={UPDATE_ENTRY_TEXT_MUTATION}>
                 {(updateEntryText, { loading, error, data }) => {
-                  if (loading) {
-                    console.log("loading")
-                  }
                   return (
                     <Button
                       title="Done"
                       style={{
                         marginRight: 10
                       }}
-                      disabled={!loading}
+                      disabled={loading}
                       onPress={() =>
                         updateEntryText({
                           variables: {
