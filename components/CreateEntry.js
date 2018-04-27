@@ -27,7 +27,7 @@ class CreateEntry extends React.Component {
   state = { showInput: false, text: "" }
 
   showInput = () => this.setState({ showInput: true })
-  hideInput = () => this.setState({ showInput: false })
+  hideInput = () => this.setState({ showInput: false, text: "" })
   updateCache = (cache, { data: { createEntry } }) => {
     const { entries } = cache.readQuery({
       query: ALL_ENTRIES_QUERY,
@@ -51,6 +51,7 @@ class CreateEntry extends React.Component {
             />
             <Button
               title="complete"
+              disabled={this.state.text.length < 1}
               onPress={() =>
                 createEntry({
                   variables: {

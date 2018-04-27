@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import ArchiveEntry from "./ArchiveEntry"
+import UpdateEntry from "./UpdateEntry"
 
 const TextContainer = styled.View`
   width: 100%;
@@ -19,6 +20,7 @@ const TextItem = styled.Text`
 const EntryListItem = ({ id, text }) => (
   <TextContainer>
     <TextItem>{text}</TextItem>
+    <UpdateEntry defaultValue="default" entryId={id} defaultValue={text} />
     <ArchiveEntry id={id} />
   </TextContainer>
 )

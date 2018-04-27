@@ -1,17 +1,96 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
+import { ActivityIndicator } from "react-native"
 import { Mutation } from "react-apollo"
+import gql from "graphql-tag"
 import styled from "styled-components"
 import Overlay from "react-native-modal-overlay"
-import { TextInput } from "react-native-elements"
+import { Input, Icon, Button } from "react-native-elements"
+import { ENTRY_BODY_FRAGMENT } from "../fragments"
 
 const Text = styled.Text``
 
+const Container = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+`
+
+const UPDATE_ENTRY_TEXT_MUTATION = gql`
+  mutation updateEntryText($entryId: ID!, $text: String) {
+    updateEntry(where: { id: $entryId }, data: { text: $text }) {
+      ...EntryBody
+    }
+  }
+  ${ENTRY_BODY_FRAGMENT}
+`
+
 export default class UpdateEntry extends Component {
+  state = { text: this.props.defaultValue, updateInputVisible: false }
+
+  showEditInput = () => this.setState({ updateInputVisible: true })
+  closeEditInput = () =>
+    this.setState((prevState, props) => ({
+      updateInputVisible: false,
+      text: props.defaultValue
+    }))
+
   render() {
+    const { defaultValue, visible, onComplete, entryId } = this.props
+
     return (
-      <Overlay visible>
-        <Text>Yoooooooo</Text>
-      </Overlay>
+      <Fragment>
+        <Icon
+          raised
+          name="edit"
+          type="font-awesome"
+          onPress={this.showEditInput}
+        />
+
+        <Overlay visible={this.state.updateInputVisible}>
+          <Container>
+            <Input
+              inputStyle={{ width: 350 }}
+              multiline
+              label="Edit entry"
+              defaultValue={defaultValue}
+              onChangeText={text => this.setState({ text })}
+            />
+            <ButtonContainer>
+              <Mutation mutation={UPDATE_ENTRY_TEXT_MUTATION}>
+                {(updateEntryText, { loading, error, data }) => {
+                  if (loading) {
+                    console.log("loading")
+                  }
+                  return (
+                    <Button
+                      title="Done"
+                      style={{
+                        marginRight: 10
+                      }}
+                      disabled={!loading}
+                      onPress={() =>
+                        updateEntryText({
+                          variables: {
+                            entryId,
+                            text: this.state.text
+                          }
+                        }).then(this.closeEditInput())
+                      }
+                    />
+                  )
+                }}
+              </Mutation>
+              <Button title="Close" onPress={this.closeEditInput} />
+            </ButtonContainer>
+          </Container>
+        </Overlay>
+      </Fragment>
     )
   }
 }
