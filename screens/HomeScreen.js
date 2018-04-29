@@ -32,7 +32,6 @@ export default class HomeScreen extends React.Component {
           </View>
           <EntriesList />
         </ScrollView>
-        <UpdateEntry defaultValue="default" />
         <CreateEntry />
       </View>
     )

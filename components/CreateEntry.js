@@ -1,8 +1,13 @@
 import React from "react"
 import { View, Text, Platform, TextInput } from "react-native"
+import Colors from "../constants/Colors"
+
 import styled from "styled-components"
+import { Icon, colors } from "react-native-elements"
+
 import gql from "graphql-tag"
 import { Mutation } from "react-apollo"
+
 import EntryStatus from "../constants/EntryStatus"
 import { USER_ID } from "../constants/UserInfo"
 import Card from "./Card"
@@ -73,9 +78,23 @@ class CreateEntry extends React.Component {
         {this.state.showInput ? (
           this.renderInput()
         ) : (
-          <Card>
-            <Button title="Create Entry" onPress={this.showInput} />
-          </Card>
+          <Icon
+            containerStyle={{
+              position: "absolute",
+              bottom: 5,
+              right: 5,
+              zIndex: 1,
+              backgroundColor: Colors.main
+            }}
+            iconStyle={{
+              color: "white"
+            }}
+            raised
+            size={25}
+            name="plus"
+            type="font-awesome"
+            onPress={this.showInput}
+          />
         )}
       </React.Fragment>
     )
