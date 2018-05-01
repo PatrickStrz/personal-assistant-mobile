@@ -1,8 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import ArchiveEntry from "./ArchiveEntry"
-import UpdateEntry from "./UpdateEntry"
-import { Button } from "react-native-elements"
+import React from 'react'
+import styled from 'styled-components'
+import ArchiveEntry from './ArchiveEntry'
+import UpdateEntry from './UpdateEntry'
+
+import COLORS from '../constants/Colors'
 
 const Box = styled.View`
   width: 100%;
@@ -11,7 +12,6 @@ const Box = styled.View`
   justify-content: space-between;
   padding: 10px;
   align-items: center;
-  background-color: white;
 `
 const TextBox = styled.View`
   margin: 10px;
@@ -24,7 +24,9 @@ const ButtonsBox = styled.View`
   align-items: center;
 `
 
-const TextItem = styled.Text``
+const TextItem = styled.Text`
+  color: ${COLORS.text};
+`
 
 const ButtonContainer = styled.View`
   margin: 10px;
@@ -37,7 +39,7 @@ const EntryListItem = ({ id, text }) => (
     </TextBox>
     <ButtonsBox>
       <ButtonContainer>
-        <UpdateEntry defaultValue="default" entryId={id} defaultValue={text} />
+        <UpdateEntry entryId={id} defaultValue={text} />
       </ButtonContainer>
       <ButtonContainer>
         <ArchiveEntry id={id} />
