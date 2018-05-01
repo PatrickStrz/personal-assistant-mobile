@@ -1,11 +1,10 @@
-import React from "react"
-import { ActivityIndicator } from "react-native"
-import gql from "graphql-tag"
-import { Mutation } from "react-apollo"
-import { Icon } from "react-native-elements"
-import { ALL_ENTRIES_QUERY } from "./EntriesList"
-import { ENTRY_BODY_FRAGMENT } from "../fragments"
-import { USER_ID } from "../constants/UserInfo"
+import React from 'react'
+import gql from 'graphql-tag'
+import { Mutation } from 'react-apollo'
+import { Icon } from 'react-native-elements'
+import { ALL_ENTRIES_QUERY } from './EntriesList'
+import { ENTRY_BODY_FRAGMENT } from '../fragments'
+import { USER_ID } from '../constants/UserInfo'
 
 const ARCHIVE_ENTRY_MUTATION = gql`
   mutation archiveEntry($id: ID!) {
@@ -20,10 +19,7 @@ const ArchiveEntry = ({ id }) => (
   <Mutation
     mutation={ARCHIVE_ENTRY_MUTATION}
     variables={{ id }}
-    refetchQueries={[
-      { query: ALL_ENTRIES_QUERY, variables: { authorId: USER_ID } }
-    ]}
-  >
+    refetchQueries={[{ query: ALL_ENTRIES_QUERY, variables: { authorId: USER_ID } }]}>
     {(archiveEntry, { loading, error, data }) => {
       return (
         <Icon
