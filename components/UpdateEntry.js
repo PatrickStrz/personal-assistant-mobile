@@ -1,13 +1,11 @@
-import React, { Component, Fragment } from "react"
-import { ActivityIndicator } from "react-native"
-import { Mutation } from "react-apollo"
-import gql from "graphql-tag"
-import styled from "styled-components"
-import Overlay from "react-native-modal-overlay"
-import { Input, Icon, Button } from "react-native-elements"
-import { ENTRY_BODY_FRAGMENT } from "../fragments"
-
-const Text = styled.Text``
+import React, { Component, Fragment } from 'react'
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
+import styled from 'styled-components'
+import Overlay from 'react-native-modal-overlay'
+import { Input, Icon, Button } from 'react-native-elements'
+import { ENTRY_BODY_FRAGMENT } from '../fragments'
+import COLORS from '../constants/Colors'
 
 const Container = styled.View`
   justify-content: center;
@@ -37,15 +35,20 @@ export default class UpdateEntry extends Component {
   closeEditInput = () =>
     this.setState((prevState, props) => ({
       updateInputVisible: false,
-      text: props.defaultValue
+      text: props.defaultValue,
     }))
 
   render() {
-    const { defaultValue, visible, onComplete, entryId } = this.props
+    const { defaultValue, entryId } = this.props
 
     return (
       <Fragment>
-        <Icon name="edit" type="font-awesome" onPress={this.showEditInput} />
+        <Icon
+          name="edit"
+          type="font-awesome"
+          color={COLORS.secondary}
+          onPress={this.showEditInput}
+        />
 
         <Overlay visible={this.state.updateInputVisible}>
           <Container>
@@ -63,15 +66,15 @@ export default class UpdateEntry extends Component {
                     <Button
                       title="Done"
                       style={{
-                        marginRight: 10
+                        marginRight: 10,
                       }}
                       disabled={loading}
                       onPress={() =>
                         updateEntryText({
                           variables: {
                             entryId,
-                            text: this.state.text
-                          }
+                            text: this.state.text,
+                          },
                         }).then(this.closeEditInput())
                       }
                     />

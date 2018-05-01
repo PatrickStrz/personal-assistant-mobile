@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements'
 import { ALL_ENTRIES_QUERY } from './EntriesList'
 import { ENTRY_BODY_FRAGMENT } from '../fragments'
 import { USER_ID } from '../constants/UserInfo'
+import COLORS from '../constants/Colors'
 
 const ARCHIVE_ENTRY_MUTATION = gql`
   mutation archiveEntry($id: ID!) {
@@ -24,6 +25,7 @@ const ArchiveEntry = ({ id }) => (
       return (
         <Icon
           name="archive"
+          color={COLORS.secondary}
           type="font-awesome"
           onPress={() => archiveEntry()}
           disabled={loading}

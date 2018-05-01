@@ -1,8 +1,14 @@
 import React from 'react'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
+import styled from 'styled-components'
 
+import COLORS from '../constants/Colors'
 import EntriesList from '../components/EntriesList'
 import CreateEntryButton from '../components/CreateEntryButton'
+
+const Box = styled.View`
+  flex: 1;
+`
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -27,7 +33,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.background,
   },
   contentContainer: {
     paddingTop: 30,
