@@ -1,13 +1,21 @@
 import React from 'react'
-import { StyleSheet, ScrollView, View, Text } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import styled from 'styled-components'
 
 import COLORS from '../constants/Colors'
 import EntriesList from '../components/EntriesList'
 import CreateEntryButton from '../components/CreateEntryButton'
+import Heading from '../uiKit/Heading'
 
 const Box = styled.View`
   flex: 1;
+  background-color: ${COLORS.background};
+`
+
+const HeadingBox = styled.View`
+  justify-content: center;
+  align-items: center;
+  height: 50px;
 `
 
 export default class HomeScreen extends React.Component {
@@ -17,31 +25,22 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Box>
         <ScrollView style={styles.contentContainer} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Text>Passion Tracker</Text>
-          </View>
+          <HeadingBox>
+            <Heading>Passion Tracker</Heading>
+          </HeadingBox>
           <EntriesList />
         </ScrollView>
         <CreateEntryButton />
-      </View>
+      </Box>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
   contentContainer: {
     paddingTop: 30,
     paddingBottom: 100,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
   },
 })

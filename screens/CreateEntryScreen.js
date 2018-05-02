@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 import styled from 'styled-components'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
@@ -38,6 +37,13 @@ const CREATE_ENTRY = gql`
 `
 
 export default class CreateEntryScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Create Entry',
+
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
   state = {
     text: '',
   }
