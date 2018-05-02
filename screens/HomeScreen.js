@@ -20,7 +20,7 @@ const HeadingBox = styled.View`
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    // header: null,
+    header: null,
   }
 
   render() {

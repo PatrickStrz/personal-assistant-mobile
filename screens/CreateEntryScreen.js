@@ -11,14 +11,17 @@ import { ALL_ENTRIES_QUERY } from '../components/EntriesList'
 import { ENTRY_BODY_FRAGMENT } from '../fragments'
 
 const Box = styled.View`
-  padding-top: 20px;
+  padding-top: 40px;
+  flex: 1;
   align-items: center;
+  background-color: ${COLORS.background}
 `
 
 const Button = styled.Button``
 
 const Input = styled.TextInput`
   font-size: 18px;
+  color: ${COLORS.text};
   padding: 5px;
   min-height: 50;
   width: 75%;
