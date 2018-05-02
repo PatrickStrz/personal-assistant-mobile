@@ -1,10 +1,11 @@
 import { Notifications } from 'expo'
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
-
+var Color = require('color')
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync'
 import CreateEntryScreen from '../screens/CreateEntryScreen'
 import HomeScreen from '../screens/HomeScreen'
+import COLORS from '../constants/Colors'
 
 const RootStackNavigator = StackNavigator(
   {
@@ -17,9 +18,15 @@ const RootStackNavigator = StackNavigator(
   },
   {
     initialRouteName: 'Main',
+
     navigationOptions: () => ({
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: Color(COLORS.background).lighten(0.5),
+        borderBottomColor: 'transparent'
+      },
       headerTitleStyle: {
-        fontWeight: 'normal',
+        fontWeight: 'bold',
       },
     }),
   }
