@@ -5,11 +5,12 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 import CreateEntryScreen from '../screens/CreateEntryScreen'
 import HomeScreen from '../screens/HomeScreen'
 import COLORS from '../constants/Colors'
+import MainTabNavigator from './MainTabNavigator'
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: HomeScreen,
+      screen: MainTabNavigator,
     },
     CreateEntry: {
       screen: CreateEntryScreen,
