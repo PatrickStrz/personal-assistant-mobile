@@ -1,14 +1,12 @@
-import React from 'react';
-import { Platform } from 'react-native';
+import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom } from 'react-navigation'
 
-import COLORS from '../constants/Colors';
+import COLORS from '../constants/Colors'
 
-import HomeScreen from '../screens/HomeScreen';
-import SnapshotsScreen from '../screens/SnapshotsScreen';
-import SettingsScreen from '../screens/SettingsScreen'
+import HomeScreen from '../screens/HomeScreen'
+import SnapshotsScreen from '../components/SnapshotsScreen'
 
 export default TabNavigator(
   {
@@ -52,8 +50,8 @@ export default TabNavigator(
     swipeEnabled: false,
     tabBarOptions: {
       style: {
-       backgroundColor: COLORS.tabBarBottom
+        backgroundColor: COLORS.tabBarBottom,
       },
     },
   }
-);
+)
