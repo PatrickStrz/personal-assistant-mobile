@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { ScrollView, StyleSheet, Text } from 'react-native'
 import { Calendar } from 'react-native-calendars'
+import moment from 'moment'
 
 import EntriesList from './EntriesList'
 
@@ -9,7 +10,7 @@ export default class SnapshotsScreen extends React.Component {
     title: 'Snapshots',
   }
 
-  state = { startDay: '', endDay: '' }
+  state = { startDay: moment().format('YYYY-MM-DD'), endDay: '' }
 
   render() {
     console.log('day:', this.state.day)
@@ -18,7 +19,7 @@ export default class SnapshotsScreen extends React.Component {
         <Calendar onDayPress={this._handleDayPressed} />
         <EntriesList startDay={this.state.startDay} endDay={this.state.endDay} />
         <ScrollView style={styles.container}>
-          <Text>Snapshots heeer</Text>
+          <Text>START DATE: {this.state.startDay}</Text>
         </ScrollView>
       </Fragment>
     )
