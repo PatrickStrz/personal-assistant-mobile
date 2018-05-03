@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import styled from 'styled-components'
-
+import {Agenda} from 'react-native-calendars'
 import COLORS from '../constants/Colors'
 import EntriesList from '../components/EntriesList'
 import CreateEntryButton from '../components/CreateEntryButton'
