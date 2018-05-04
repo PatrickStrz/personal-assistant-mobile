@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import COLORS from '../../constants/Colors'
@@ -17,15 +18,19 @@ const TextBox = styled.View`
 `
 
 const TextItem = styled.Text`
-  color: ${COLORS.text};
+  color: ${({ inActive }) => (inActive ? COLORS.lightRed : COLORS.text)};
 `
 
-const EntryListItem = ({ id, text }) => (
+const SnapshotListItem = ({ text, inActive }) => (
   <Box>
     <TextBox>
-      <TextItem>{text}</TextItem>
+      <TextItem inActive={inActive}>{text} </TextItem>
     </TextBox>
   </Box>
 )
 
-export default EntryListItem
+SnapshotListItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  inActive: PropTypes.bool.isRequired,
+}
+export default SnapshotListItem

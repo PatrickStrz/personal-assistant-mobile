@@ -1,27 +1,37 @@
-import React, { Fragment } from 'react'
-import { ScrollView, StyleSheet, Text } from 'react-native'
-import { Calendar } from 'react-native-calendars'
+import React from 'react'
+import styled from 'styled-components'
+
 import moment from 'moment'
 
-import EntriesList from './EntriesList'
+import { Calendar } from 'react-native-calendars'
+import COLORS from '../../constants/Colors'
+
+import SnapshotList from './SnapshotList'
+
+const Box = styled.View`
+  flex: 1;
+  background-color: ${COLORS.background};
+`
+
+const startDay = moment().format('YYYY-MM-DD')
+const endDay = moment()
+  .add('days', 1)
+  .format('YYYY-MM-DD')
 
 export default class SnapshotsScreen extends React.Component {
   static navigationOptions = {
     title: 'Snapshots',
   }
 
-  state = { startDay: moment().format('YYYY-MM-DD'), endDay: '' }
+  state = { startDay, endDay }
 
   render() {
     console.log('day:', this.state.day)
     return (
-      <Fragment>
+      <Box>
         <Calendar onDayPress={this._handleDayPressed} />
-        <EntriesList startDay={this.state.startDay} endDay={this.state.endDay} />
-        <ScrollView style={styles.container}>
-          <Text>START DATE: {this.state.startDay}</Text>
-        </ScrollView>
-      </Fragment>
+        <SnapshotList startDay={this.state.startDay} endDay={this.state.endDay} />
+      </Box>
     )
   }
 
@@ -32,11 +42,3 @@ export default class SnapshotsScreen extends React.Component {
   _handleDayPressed = ({ dateString }) =>
     this.setState({ startDay: dateString, endDay: this._getEndDay(dateString) })
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-})

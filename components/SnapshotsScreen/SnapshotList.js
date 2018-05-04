@@ -1,11 +1,14 @@
 import React from 'react'
 import { ActivityIndicator } from 'react-native'
+import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 
 import { ENTRY_BODY_FRAGMENT } from '../../fragments'
-import EntryListItem from './EntryListItem'
+import ENTRY_STATUS from '../../constants/EntryStatus'
+
+import SnapshotListItem from './SnapshotListItem'
 
 const USER_ID = 'cjg9o3ext00330718reim6pc8'
 
@@ -14,11 +17,11 @@ const Text = styled.Text`
 `
 
 export const ENTRIES_BY_DATE_QUERY = gql`
-  query allEntries($id: ID!, $createdAtDate: DateTime) {
+  query allEntries($authorId: ID!, $startDay: DateTime, $endDay: DateTime) {
     entries(
-      where: { author: { id: $id }, createdAt_gte: $createdAtDate, createdAt_lte: $createdAtDate }
+      where: { author: { id: $authorId }, createdAt_gte: $startDay, createdAt_lte: $endDay }
     ) {
-      ...ENTRY_BODY_FRAGMENT
+      ...EntryBody
     }
   }
   ${ENTRY_BODY_FRAGMENT}
@@ -29,11 +32,16 @@ const Scroll = styled.ScrollView`
 `
 
 const renderData = data => {
-  return data.entries.map(({ id, text }) => <EntryListItem key={id} id={id} text={text} />)
+  return data.entries.map(({ id, text, status }) => (
+    <SnapshotListItem key={id} id={id} text={text} inActive={status === ENTRY_STATUS.ARCHIVED} />
+  ))
 }
 
-const EntriesList = () => (
-  <Query query={ENTRIES_BY_DATE_QUERY} variables={{ authorId: USER_ID }} style={{ flex: 1 }}>
+const EntriesList = ({ startDay, endDay }) => (
+  <Query
+    query={ENTRIES_BY_DATE_QUERY}
+    variables={{ authorId: USER_ID, startDay, endDay }}
+    style={{ flex: 1 }}>
     {({ loading, error, data }) => {
       if (loading) return <ActivityIndicator />
       if (error) return <Text>Error</Text>
@@ -44,5 +52,10 @@ const EntriesList = () => (
     }}
   </Query>
 )
+
+EntriesList.propTypes = {
+  startDay: PropTypes.string.isRequired,
+  endDay: PropTypes.string.isRequired,
+}
 
 export default EntriesList
