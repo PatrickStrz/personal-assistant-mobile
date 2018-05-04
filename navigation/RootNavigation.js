@@ -3,13 +3,13 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync'
 import CreateEntryScreen from '../screens/CreateEntryScreen'
-import HomeScreen from '../screens/HomeScreen'
 import COLORS from '../constants/Colors'
+import MainTabNavigator from './MainTabNavigator'
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: HomeScreen,
+      screen: MainTabNavigator,
     },
     CreateEntry: {
       screen: CreateEntryScreen,
@@ -22,7 +22,7 @@ const RootStackNavigator = StackNavigator(
       headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: COLORS.header,
-        borderBottomColor: 'transparent'
+        borderBottomColor: 'transparent',
       },
       headerTitleStyle: {
         fontWeight: 'bold',
