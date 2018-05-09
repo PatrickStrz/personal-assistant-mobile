@@ -8,8 +8,9 @@ import { AppLoading, Asset, Font } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 import RootNavigation from './navigation/RootNavigation'
 import COLORS from './constants/Colors'
+import { IP } from './secrets'
 
-const GRAPHQL_URI = 'http://localhost:4000'
+const GRAPHQL_URI = `http://${IP}:4000`
 const client = new ApolloClient({
   uri: GRAPHQL_URI,
 })
