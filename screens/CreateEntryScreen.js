@@ -14,7 +14,7 @@ const Box = styled.View`
   padding-top: 40px;
   flex: 1;
   align-items: center;
-  background-color: ${COLORS.background}
+  background-color: ${COLORS.background};
 `
 
 const Button = styled.Button``

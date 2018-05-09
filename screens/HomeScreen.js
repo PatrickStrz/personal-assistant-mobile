@@ -5,6 +5,7 @@ import COLORS from '../constants/Colors'
 import EntriesList from '../components/EntriesList'
 import CreateEntryButton from '../components/CreateEntryButton'
 import Heading from '../uiKit/Heading'
+import SortableList from '../components/SortableEntriesList'
 
 const Box = styled.View`
   flex: 1;
@@ -25,12 +26,13 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <Box>
-        <ScrollView style={styles.contentContainer} contentContainerStyle={styles.contentContainer}>
-          <HeadingBox>
-            <Heading>Passion Tracker</Heading>
-          </HeadingBox>
-          <EntriesList />
-        </ScrollView>
+        {/* <ScrollView style={styles.contentContainer} contentContainerStyle={styles.contentContainer}> */}
+        <HeadingBox>
+          <Heading>Passion Tracker</Heading>
+        </HeadingBox>
+        {/* <EntriesList /> */}
+        <SortableList />
+        {/* </ScrollView> */}
         <CreateEntryButton />
       </Box>
     )
@@ -39,6 +41,7 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   contentContainer: {
+    flex: 1,
     paddingTop: 30,
     paddingBottom: 100,
   },
