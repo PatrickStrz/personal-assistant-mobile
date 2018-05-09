@@ -15,7 +15,7 @@ const Box = styled.View`
 
 const startDay = moment().format('YYYY-MM-DD')
 const endDay = moment()
-  .add('days', 1)
+  .add(1, 'days')
   .format('YYYY-MM-DD')
 
 export default class SnapshotsScreen extends React.Component {
@@ -26,7 +26,6 @@ export default class SnapshotsScreen extends React.Component {
   state = { startDay, endDay }
 
   render() {
-    console.log('day:', this.state.day)
     return (
       <Box>
         <Calendar onDayPress={this._handleDayPressed} />

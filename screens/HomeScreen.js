@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
 import styled from 'styled-components'
 import COLORS from '../constants/Colors'
 import EntriesList from '../components/EntriesList'
@@ -14,7 +13,8 @@ const Box = styled.View`
 const HeadingBox = styled.View`
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 60px;
+  background-color: ${COLORS.main};
 `
 
 export default class HomeScreen extends React.Component {
@@ -25,21 +25,12 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <Box>
-        <ScrollView style={styles.contentContainer} contentContainerStyle={styles.contentContainer}>
-          <HeadingBox>
-            <Heading>Passion Tracker</Heading>
-          </HeadingBox>
-          <EntriesList />
-        </ScrollView>
+        <HeadingBox>
+          <Heading>Passion Tracker</Heading>
+        </HeadingBox>
+        <EntriesList />
         <CreateEntryButton />
       </Box>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  contentContainer: {
-    paddingTop: 30,
-    paddingBottom: 100,
-  },
-})
