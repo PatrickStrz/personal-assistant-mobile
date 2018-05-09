@@ -68,12 +68,12 @@ export default class CreateEntryScreen extends React.Component {
     } = this.props
     return (
       <Mutation mutation={CREATE_ENTRY} update={this.updateCache}>
-        {createEntry => (
+        {(createEntry, { data, loading, error }) => (
           <Box>
             <Input onChangeText={text => this.setState({ text })} multiline />
             <Button
-              title="complete"
-              disabled={this.state.text.length < 1}
+              title={loading ? '...loading' : 'complete'}
+              disabled={this.state.text.length < 1 || loading}
               onPress={() =>
                 createEntry({
                   variables: {

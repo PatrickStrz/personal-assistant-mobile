@@ -12,6 +12,8 @@ const Box = styled.View`
   justify-content: space-between;
   padding: 10px;
   align-items: center;
+  margin-bottom: 5px;
+  background-color: ${COLORS.backgroundLighter};
 `
 const TextBox = styled.View`
   margin: 10px;
@@ -37,14 +39,14 @@ const EntryListItem = ({ id, text }) => (
     <TextBox>
       <TextItem>{text}</TextItem>
     </TextBox>
-    <ButtonsBox>
+    {/* <ButtonsBox>
       <ButtonContainer>
         <UpdateEntry entryId={id} defaultValue={text} />
       </ButtonContainer>
       <ButtonContainer>
         <ArchiveEntry id={id} />
       </ButtonContainer>
-    </ButtonsBox>
+    </ButtonsBox> */}
   </Box>
 )
 

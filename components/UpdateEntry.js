@@ -67,6 +67,7 @@ export default class UpdateEntry extends Component {
                       title="Done"
                       style={{
                         marginRight: 10,
+                        backgroundColor: loading ? 'red' : 'green',
                       }}
                       disabled={loading}
                       onPress={() =>

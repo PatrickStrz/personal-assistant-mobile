@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, Platform } from 'react-native'
 import SortableList from 'react-native-sortable-list'
 
@@ -15,69 +16,63 @@ const RowText = styled.Text`
   font-size: 20px;
 `
 
-const data = {
-  0: {
-    image: 'https://placekitten.com/200/240',
-    text: 'Chloe',
-  },
-  1: {
-    image: 'https://placekitten.com/200/201',
-    text: 'Jasper',
-  },
-  2: {
-    image: 'https://placekitten.com/200/202',
-    text: 'Pepper',
-  },
-  3: {
-    image: 'https://placekitten.com/200/203',
-    text: 'Oscar',
-  },
-  4: {
-    image: 'https://placekitten.com/200/204',
-    text: 'Dusty',
-  },
-  5: {
-    image: 'https://placekitten.com/200/205',
-    text: 'Spooky',
-  },
-  6: {
-    image: 'https://placekitten.com/200/210',
-    text: 'Kiki',
-  },
-  7: {
-    image: 'https://placekitten.com/200/215',
-    text: 'Smokey',
-  },
-  8: {
-    image: 'https://placekitten.com/200/220',
-    text: 'Gizmo',
-  },
-  9: {
-    image: 'https://placekitten.com/220/239',
-    text: 'Kitty',
-  },
-}
+// const data = {
+//   0: {
+//     image: 'https://placekitten.com/200/240',
+//     text: 'Chloe',
+//   },
+//   1: {
+//     image: 'https://placekitten.com/200/201',
+//     text: 'Jasper',
+//   },
+//   2: {
+//     image: 'https://placekitten.com/200/202',
+//     text: 'Pepper',
+//   },
+//   3: {
+//     image: 'https://placekitten.com/200/203',
+//     text: 'Oscar',
+//   },
+//   4: {
+//     image: 'https://placekitten.com/200/204',
+//     text: 'Dusty',
+//   },
+//   5: {
+//     image: 'https://placekitten.com/200/205',
+//     text: 'Spooky',
+//   },
+//   6: {
+//     image: 'https://placekitten.com/200/210',
+//     text: 'Kiki',
+//   },
+//   7: {
+//     image: 'https://placekitten.com/200/215',
+//     text: 'Smokey',
+//   },
+//   8: {
+//     image: 'https://placekitten.com/200/220',
+//     text: 'Gizmo',
+//   },
+//   9: {
+//     image: 'https://placekitten.com/220/239',
+//     text: 'Kitty',
+//   },
+// }
 
 export default class SortableEntriesList extends Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+    renderRow: PropTypes.func.isRequired,
+  }
   render() {
+    const { data, renderRow } = this.props
     return (
       <SortableList
         style={styles.list}
-        contentContainerStyle={{
-          width: window.width,
-
-          ...Platform.select({
-            ios: {
-              paddingHorizontal: 30,
-            },
-
-            android: {
-              paddingHorizontal: 0,
-            },
-          }),
-        }}
+        contentContainerStyle={styles.contentContainer}
         data={data}
-        renderRow={this._renderRow}
+        renderRow={renderRow}
+        onChangeOrder={this._onChangeOrder}
       />
     )
   }
@@ -88,6 +83,7 @@ export default class SortableEntriesList extends Component {
       </RowContainer>
     )
   }
+  _onChangeOrder = nextOrder => console.log(nextOrder)
 }
 
 const styles = StyleSheet.create({
