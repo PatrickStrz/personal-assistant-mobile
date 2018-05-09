@@ -1,53 +1,104 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { StyleSheet, Platform, Animated, Easing } from 'react-native'
 import styled from 'styled-components'
-import ArchiveEntry from './ArchiveEntry'
-import UpdateEntry from './UpdateEntry'
-
 import COLORS from '../constants/Colors'
 
-const Box = styled.View`
-  width: 100%;
-  min-height: 70px;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  align-items: center;
-  margin-bottom: 5px;
-  background-color: ${COLORS.backgroundLighter};
-`
-const TextBox = styled.View`
-  margin: 10px;
-  max-width: 70%;
-`
-
-const ButtonsBox = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
-
-const TextItem = styled.Text`
+const StyledText = styled.Text`
   color: ${COLORS.text};
+  font-size: 17px;
 `
 
-const ButtonContainer = styled.View`
-  margin: 10px;
-`
+class Row extends Component {
+  constructor(props) {
+    super(props)
 
-const EntryListItem = ({ id, text }) => (
-  <Box>
-    <TextBox>
-      <TextItem>{text}</TextItem>
-    </TextBox>
-    {/* <ButtonsBox>
-      <ButtonContainer>
-        <UpdateEntry entryId={id} defaultValue={text} />
-      </ButtonContainer>
-      <ButtonContainer>
-        <ArchiveEntry id={id} />
-      </ButtonContainer>
-    </ButtonsBox> */}
-  </Box>
-)
+    this._active = new Animated.Value(0)
 
-export default EntryListItem
+    this._style = {
+      ...Platform.select({
+        ios: {
+          transform: [
+            {
+              scale: this._active.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 1.05],
+              }),
+            },
+          ],
+          shadowRadius: this._active.interpolate({
+            inputRange: [0, 1],
+            outputRange: [2, 10],
+          }),
+        },
+
+        android: {
+          transform: [
+            {
+              scale: this._active.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 1.07],
+              }),
+            },
+          ],
+          elevation: this._active.interpolate({
+            inputRange: [0, 1],
+            outputRange: [2, 6],
+          }),
+        },
+      }),
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.active !== nextProps.active) {
+      console.log('active:', nextProps.active)
+      Animated.timing(this._active, {
+        duration: 300,
+        easing: Easing.bounce,
+        toValue: Number(nextProps.active),
+      }).start()
+    }
+  }
+
+  render() {
+    const { text } = this.props
+
+    return (
+      <Animated.View style={[styles.entry, this._style]}>
+        <StyledText numberOfLines={2}>{text}</StyledText>
+      </Animated.View>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  entry: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.backgroundLighter,
+    padding: 16,
+    minHeight: 80,
+    flex: 1,
+    marginTop: 7,
+    marginBottom: 12,
+    borderRadius: 4,
+
+    ...Platform.select({
+      ios: {
+        width: window.width - 30 * 2,
+        shadowColor: 'rgba(0,0,0,0.2)',
+        shadowOpacity: 1,
+        shadowOffset: { height: 2, width: 2 },
+        shadowRadius: 2,
+      },
+
+      android: {
+        width: window.width - 30 * 2,
+        elevation: 0,
+        marginHorizontal: 30,
+      },
+    }),
+  },
+})
+
+export default Row

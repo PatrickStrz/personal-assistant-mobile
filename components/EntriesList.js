@@ -23,7 +23,9 @@ export const ALL_ENTRIES_QUERY = gql`
   ${ENTRY_BODY_FRAGMENT}
 `
 
-const renderRow = ({ data: { text, id } }) => <EntryListItem key={id} id={id} text={text} />
+const renderRow = ({ active, data: { text, id } }) => (
+  <EntryListItem key={id} id={id} text={text} active={active} />
+)
 
 const EntriesList = () => (
   <Query query={ALL_ENTRIES_QUERY} variables={{ authorId: USER_ID }} style={{ flex: 1 }}>
@@ -35,7 +37,6 @@ const EntriesList = () => (
         data.entries.forEach(entry => {
           entriesNormalized[entry.id] = entry
         })
-        console.log(entriesNormalized)
         return <SortableEntriesList data={entriesNormalized} renderRow={renderRow} />
       }
       return <Text>Nothing here</Text>
