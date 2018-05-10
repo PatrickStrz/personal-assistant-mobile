@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 
-import COLORS from '../constants/Colors'
-import ENTRY_STATUS from '../constants/EntryStatus'
-import { USER_ID } from '../constants/UserInfo'
+import COLORS from '../../constants/Colors'
+import ENTRY_STATUS from '../../constants/EntryStatus'
+import { USER_ID } from '../../constants/UserInfo'
 
-import { ALL_ENTRIES_QUERY } from '../components/EntriesList'
-import { ENTRY_BODY_FRAGMENT } from '../fragments'
+import { ALL_ENTRIES_QUERY } from '../HomeScreen/EntriesList'
+import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 
 const Box = styled.View`
   padding-top: 40px;

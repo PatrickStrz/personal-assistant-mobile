@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Platform, Animated, Easing } from 'react-native'
 import styled from 'styled-components'
-import COLORS from '../constants/Colors'
+import COLORS from '../../constants/Colors'
 
 const StyledText = styled.Text`
   color: ${COLORS.text};

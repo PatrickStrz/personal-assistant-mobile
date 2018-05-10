@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import styled from 'styled-components'
 import SortableEntriesList from './SortableEntriesList'
 
-import { ENTRY_BODY_FRAGMENT } from '../fragments'
+import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 import EntryListItem from './EntryListItem'
 
 const USER_ID = 'cjg9o3ext00330718reim6pc8'

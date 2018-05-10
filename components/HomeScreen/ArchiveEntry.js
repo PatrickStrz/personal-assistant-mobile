@@ -3,9 +3,9 @@ import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { Icon } from 'react-native-elements'
 import { ALL_ENTRIES_QUERY } from './EntriesList'
-import { ENTRY_BODY_FRAGMENT } from '../fragments'
-import { USER_ID } from '../constants/UserInfo'
-import COLORS from '../constants/Colors'
+import { ENTRY_BODY_FRAGMENT } from '../../fragments'
+import { USER_ID } from '../../constants/UserInfo'
+import COLORS from '../../constants/Colors'
 
 const ARCHIVE_ENTRY_MUTATION = gql`
   mutation archiveEntry($id: ID!) {
