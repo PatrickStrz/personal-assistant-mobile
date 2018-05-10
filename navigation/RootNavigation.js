@@ -2,7 +2,7 @@ import { Notifications } from 'expo'
 import React from 'react'
 import { StackNavigator } from 'react-navigation'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync'
-import CreateEntryScreen from '../components/CreateEntryScreen'
+import CreateEntryScreen from '../src/CreateEntryScreen'
 import COLORS from '../constants/Colors'
 import MainTabNavigator from './MainTabNavigator'
 

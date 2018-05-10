@@ -5,8 +5,8 @@ import { TabNavigator, TabBarBottom } from 'react-navigation'
 
 import COLORS from '../constants/Colors'
 
-import HomeScreen from '../components/HomeScreen'
-import SnapshotsScreen from '../components/SnapshotsScreen'
+import HomeScreen from '../src/HomeScreen'
+import SnapshotsScreen from '../src/SnapshotsScreen'
 
 export default TabNavigator(
   {
