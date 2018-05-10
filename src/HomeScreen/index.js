@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import COLORS from '../constants/Colors'
-import EntriesList from '../components/EntriesList'
-import CreateEntryButton from '../components/CreateEntryButton'
-import Heading from '../uiKit/Heading'
+import COLORS from '../../constants/Colors'
+import EntriesList from './EntriesList'
+import CreateEntryButton from './CreateEntryButton'
+import Heading from '../../uiKit/Heading'
 
 const Box = styled.View`
   flex: 1;

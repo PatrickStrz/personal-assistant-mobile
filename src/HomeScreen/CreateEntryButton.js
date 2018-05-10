@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
-import COLORS from '../constants/Colors'
+import COLORS from '../../constants/Colors'
 
 const CreateEntryButton = ({ navigation: { navigate } }) => (
   <Icon

@@ -4,8 +4,8 @@ import gql from 'graphql-tag'
 import styled from 'styled-components'
 import Overlay from 'react-native-modal-overlay'
 import { Input, Icon, Button } from 'react-native-elements'
-import { ENTRY_BODY_FRAGMENT } from '../fragments'
-import COLORS from '../constants/Colors'
+import { ENTRY_BODY_FRAGMENT } from '../../fragments'
+import COLORS from '../../constants/Colors'
 
 const Container = styled.View`
   justify-content: center;
