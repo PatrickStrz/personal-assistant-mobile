@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ArchiveEntry from './ArchiveEntry'
 import UpdateEntry from './UpdateEntry'
 import COLORS from '../../constants/Colors'
+import EntryDetailQuery from './EntryDetailQuery'
 
 const Box = styled.View`
   padding: 20px;
@@ -17,17 +18,12 @@ const ButtonsBox = styled.View`
   justify-content: space-between;
 `
 
-const StyledText = styled.Text`
-  font-size: 17px;
-  color: ${COLORS.text};
-`
-
 const EntryDetailScreen = ({ navigation }) => {
   const id = navigation.getParam('id')
   const text = navigation.getParam('text')
   return (
     <Box>
-      <StyledText>{text}</StyledText>
+      <EntryDetailQuery id={id} />
       <ButtonsBox>
         <ArchiveEntry id={id} />
         <UpdateEntry entryId={id} defaultValue={text} />

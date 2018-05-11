@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableOpacity, Text, Platform, Animated, Easing } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import COLORS from '../../constants/Colors'
@@ -62,16 +63,14 @@ class EntryListItem extends Component {
     const { text, id } = this.props
 
     return (
-      <Animated.View
-        style={[styles.entry, this._style]}
-        onPress={() => console.log('clickedsdfs!')}>
+      <Animated.View style={[styles.entry, this._style]}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('EntryDetail', { id, text })}>
           <Text style={styles.text} numberOfLines={2}>
             {text}
           </Text>
         </TouchableOpacity>
-        <View style={styles.dragGuide} />
+        <View style={styles.dragHandle} />
       </Animated.View>
     )
   }
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: COLORS.text,
   },
-  dragGuide: {
+  dragHandle: {
     position: 'absolute',
     bottom: 7,
     height: 10,
@@ -120,5 +119,12 @@ const styles = StyleSheet.create({
     }),
   },
 })
+
+EntryListItem.propTypes = {
+  active: PropTypes.any,
+  navigation: PropTypes.any,
+  text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+}
 
 export default withNavigation(EntryListItem)
