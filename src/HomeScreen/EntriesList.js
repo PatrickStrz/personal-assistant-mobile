@@ -16,7 +16,7 @@ const Text = styled.Text`
 
 export const ALL_ENTRIES_QUERY = gql`
   query allEntries($authorId: ID!) {
-    entries(where: { author: { id: $authorId }, status: LISTED }) {
+    entries(first: 20, where: { author: { id: $authorId }, status: LISTED }) {
       ...EntryBody
     }
   }

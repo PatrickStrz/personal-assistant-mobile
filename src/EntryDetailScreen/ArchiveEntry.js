@@ -1,11 +1,11 @@
 import React from 'react'
+import { Button } from 'react-native'
+import PropTypes from 'prop-types'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
-import { Icon } from 'react-native-elements'
-import { ALL_ENTRIES_QUERY } from './EntriesList'
+import { ALL_ENTRIES_QUERY } from '../HomeScreen/EntriesList'
 import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 import { USER_ID } from '../../constants/UserInfo'
-import COLORS from '../../constants/Colors'
 
 const ARCHIVE_ENTRY_MUTATION = gql`
   mutation archiveEntry($id: ID!) {
@@ -23,10 +23,9 @@ const ArchiveEntry = ({ id }) => (
     refetchQueries={[{ query: ALL_ENTRIES_QUERY, variables: { authorId: USER_ID } }]}>
     {(archiveEntry, { loading, error, data }) => {
       return (
-        <Icon
-          name="archive"
-          color={COLORS.secondary}
-          type="font-awesome"
+        <Button
+          color="red"
+          title={loading ? '...loading' : 'Archive Entry'}
           onPress={() => archiveEntry()}
           disabled={loading}
         />
@@ -34,5 +33,9 @@ const ArchiveEntry = ({ id }) => (
     }}
   </Mutation>
 )
+
+ArchiveEntry.propTypes = {
+  id: PropTypes.string.isRequired,
+}
 
 export default ArchiveEntry
