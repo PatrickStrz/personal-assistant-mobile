@@ -59,13 +59,14 @@ class EntryListItem extends Component {
   }
 
   render() {
-    const { text } = this.props
+    const { text, id } = this.props
 
     return (
       <Animated.View
         style={[styles.entry, this._style]}
         onPress={() => console.log('clickedsdfs!')}>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('EntryDetail')}>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('EntryDetail', { id, text })}>
           <Text style={styles.text} numberOfLines={2}>
             {text}
           </Text>

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
@@ -29,6 +30,10 @@ const UPDATE_ENTRY_TEXT_MUTATION = gql`
 `
 
 export default class UpdateEntry extends Component {
+  static propTypes = {
+    entryId: PropTypes.string.isRequired,
+    defaultValue: PropTypes.string.isRequired,
+  }
   state = { text: this.props.defaultValue, updateInputVisible: false }
 
   showEditInput = () => this.setState({ updateInputVisible: true })
