@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
+import { Button } from 'react-native'
 import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 import Overlay from 'react-native-modal-overlay'
-import { Input, Icon, Button } from 'react-native-elements'
+import { Input, Icon } from 'react-native-elements'
 import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 import COLORS from '../../constants/Colors'
 
@@ -48,12 +49,7 @@ export default class UpdateEntry extends Component {
 
     return (
       <Fragment>
-        <Icon
-          name="edit"
-          type="font-awesome"
-          color={COLORS.secondary}
-          onPress={this.showEditInput}
-        />
+        <Button title="edit" color={COLORS.secondary} onPress={this.showEditInput} />
 
         <Overlay visible={this.state.updateInputVisible}>
           <Container>
