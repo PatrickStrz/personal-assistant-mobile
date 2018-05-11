@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
-import { StyleSheet, Platform, Animated, Easing } from 'react-native'
-import styled from 'styled-components'
+import { StyleSheet, View, TouchableOpacity, Text, Platform, Animated, Easing } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import COLORS from '../../constants/Colors'
 
-const StyledText = styled.Text`
-  color: ${COLORS.text};
-  font-size: 17px;
-`
-
-class Row extends Component {
+class EntryListItem extends Component {
   constructor(props) {
     super(props)
 
     this._active = new Animated.Value(0)
 
     this._style = {
+      flexDirection: 'column',
+      alignItems: 'center',
+
       ...Platform.select({
         ios: {
           transform: [
@@ -64,23 +62,44 @@ class Row extends Component {
     const { text } = this.props
 
     return (
-      <Animated.View style={[styles.entry, this._style]}>
-        <StyledText numberOfLines={2}>{text}</StyledText>
+      <Animated.View
+        style={[styles.entry, this._style]}
+        onPress={() => console.log('clickedsdfs!')}>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('EntryDetail')}>
+          <Text style={styles.text} numberOfLines={2}>
+            {text}
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.dragGuide} />
       </Animated.View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  text: {
+    fontSize: 17,
+    color: COLORS.text,
+  },
+  dragGuide: {
+    position: 'absolute',
+    bottom: 7,
+    height: 10,
+    width: 60,
+    margin: 10,
+    borderRadius: 5,
+    backgroundColor: COLORS.backgroundLight,
+  },
   entry: {
     flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: COLORS.backgroundLighter,
     padding: 16,
-    minHeight: 80,
+    minHeight: 100,
     flex: 1,
     marginTop: 7,
-    marginBottom: 12,
+    marginBottom: 2,
     borderRadius: 4,
 
     ...Platform.select({
@@ -101,4 +120,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Row
+export default withNavigation(EntryListItem)

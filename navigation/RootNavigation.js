@@ -3,6 +3,7 @@ import React from 'react'
 import { StackNavigator } from 'react-navigation'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync'
 import CreateEntryScreen from '../src/CreateEntryScreen'
+import EntryDetailScreen from '../src/EntryDetailScreen'
 import COLORS from '../constants/Colors'
 import MainTabNavigator from './MainTabNavigator'
 
@@ -13,6 +14,9 @@ const RootStackNavigator = StackNavigator(
     },
     CreateEntry: {
       screen: CreateEntryScreen,
+    },
+    EntryDetail: {
+      screen: EntryDetailScreen,
     },
   },
   {
