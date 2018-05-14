@@ -42,7 +42,7 @@ export default class AffirmationHeader extends Component {
   }
 
   _toggleExpanded = () => this.setState(prevState => ({ isExpanded: !prevState.isExpanded }))
-  _sampleText = ' Affirmation Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores'
+  _sampleText = 'Building an app to track a wandering mind and placing tasks in a queue to accomplish lots, gain a sense of mastery and work on passions'
   render() {
     return (
       <TouchableOpacity onPress={this._toggleExpanded}>
