@@ -7,10 +7,8 @@ import styled from 'styled-components'
 
 import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 import ENTRY_STATUS from '../../constants/EntryStatus'
-
+import { USER_ID } from '../../constants/UserInfo'
 import SnapshotListItem from './SnapshotListItem'
-
-const USER_ID = 'cjg9o3ext00330718reim6pc8'
 
 const Text = styled.Text`
   color: red;

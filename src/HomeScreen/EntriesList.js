@@ -7,8 +7,7 @@ import SortableEntriesList from './SortableEntriesList'
 
 import { ENTRY_BODY_FRAGMENT } from '../../fragments'
 import EntryListItem from './EntryListItem'
-
-const USER_ID = 'cjg9o3ext00330718reim6pc8'
+import { USER_ID } from '../../constants/UserInfo'
 
 const Text = styled.Text`
   color: red;
