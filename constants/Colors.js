@@ -3,6 +3,7 @@ var Color = require('color')
 const tintColor = '#2f95dc'
 const main = '#7E57C2'
 const background = '#292D3E'
+const lightRed = '#e34848'
 
 export default {
   background,
@@ -22,7 +23,8 @@ export default {
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
   errorBackground: 'red',
-  lightRed: '#e34848',
+  lightRed,
+  error: lightRed,
   errorText: '#fff',
   warningBackground: '#EAEB5E',
   warningText: '#666804',

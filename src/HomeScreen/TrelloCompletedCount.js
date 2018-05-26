@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { TRELLO_API_KEY, TRELLO_API_TOKEN } from '../../secrets'
@@ -6,7 +6,11 @@ import COLORS from '../../constants/Colors'
 
 const CountText = styled.Text`
   color: ${COLORS.secondary};
-  font-size: 25px;
+  font-size: 20px;
+`
+const ErrorText = styled.Text`
+  color: ${COLORS.error};
+  font-size: 15px;
 `
 
 const COMPLETED_LIST_ID = '5af30c9c9b61e1a360102aa7'
@@ -18,17 +22,23 @@ export default class TrelloCompletedCount extends Component {
     axios
       .get(URI)
       .then(response => {
-        console.log('response.data.length:', response.data.length)
-        this.setState({ count: response.data ? response.data.length : null })
+        this.setState({ count: response.data ? response.data.length : null, error: false })
       })
       .catch(err => {
         console.log(err)
+        this.setState({ error: true })
       })
   }
   state = {
     count: null,
+    error: false,
   }
   render() {
-    return <CountText>{this.state.count && this.state.count} tasks completed</CountText>
+    return (
+      <Fragment>
+        {!this.state.error && <CountText>{this.state.count} tasks completed</CountText>}
+        {this.state.error && <ErrorText>error fetching completed tasks from trello</ErrorText>}
+      </Fragment>
+    )
   }
 }
