@@ -10,11 +10,20 @@ export default class CreateTrelloCard extends Component {
     name: PropTypes.string.isRequired,
   }
 
+  state = { loading: false }
+
   render() {
-    return <Button title="Create Trello Card in AllTasks List" onPress={this._handlePress} />
+    return (
+      <Button
+        title={this.state.loading ? 'loading' : 'Create Trello Card in AllTasks List'}
+        onPress={this._handlePress}
+        disabled={this.state.loading}
+      />
+    )
   }
 
   _handlePress = () => {
+    this.setState({ loading: true })
     const { name } = this.props
     axios
       .post(`https://api.trello.com/1/cards/?${AUTH_QUERYSTRING}`, {
@@ -23,10 +32,12 @@ export default class CreateTrelloCard extends Component {
         pos: 'top',
       })
       .then(response => {
+        this.setState({ loading: false })
         const { name } = response.data
         Alert.alert('Success!', `Created trello card with title: '${name}'`)
       })
       .catch(err => {
+        this.setState({ loading: true })
         console.log(err)
         Alert.alert('Error', 'card was not created')
       })
