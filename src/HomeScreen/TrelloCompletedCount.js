@@ -15,7 +15,7 @@ const ErrorText = styled.Text`
 
 const COMPLETED_LIST_ID = '5af30c9c9b61e1a360102aa7'
 
-const URI = `https://api.trello.com/1/lists/${COMPLETED_LIST_ID}/cards?fields=id&key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`
+const URI = `https://api.trello.com/1/lists/${COMPLETED_LIST_ID}/cards?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}&fields=id`
 
 export default class TrelloCompletedCount extends Component {
   componentDidMount() {
