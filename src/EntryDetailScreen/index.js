@@ -4,6 +4,7 @@ import ArchiveEntry from './ArchiveEntry'
 import UpdateEntry from './UpdateEntry'
 import COLORS from '../../constants/Colors'
 import EntryDetailQuery from './EntryDetailQuery'
+import CreateTrelloCard from './CreateTrelloCard'
 
 const Box = styled.View`
   padding: 20px;
@@ -14,8 +15,6 @@ const Box = styled.View`
 const ButtonsBox = styled.View`
   margin-top: 20px;
   width: 40%;
-  flex-direction: row;
-  justify-content: space-between;
 `
 
 const EntryDetailScreen = ({ navigation }) => {
@@ -27,6 +26,7 @@ const EntryDetailScreen = ({ navigation }) => {
       <ButtonsBox>
         <ArchiveEntry id={id} />
         <UpdateEntry entryId={id} defaultValue={text} />
+        <CreateTrelloCard name={text} />
       </ButtonsBox>
     </Box>
   )
